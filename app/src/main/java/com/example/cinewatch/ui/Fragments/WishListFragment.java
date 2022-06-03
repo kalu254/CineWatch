@@ -57,8 +57,12 @@ public class WishListFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 viewModel.clearWishList();
-                Toast.makeText(getContext(),"WishList cleared!",Toast.LENGTH_SHORT).show();
-                moviesList.clear();
+                if (moviesList != null){
+                    moviesList.clear();
+                    Toast.makeText(getContext(),"WishList cleared!",Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(getContext(),"Your Wishlist is empty!",Toast.LENGTH_SHORT).show();
+                }
                 adapter.setMoviesList(moviesList);
 
             }

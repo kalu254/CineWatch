@@ -52,23 +52,20 @@ public class HomeActivity extends AppCompatActivity {
 
         }
 
-        binding.smoothBar.setOnItemSelectedListener(new OnItemSelectedListener() {
-            @Override
-            public boolean onItemSelect(int i) {
+        binding.smoothBar.setOnItemSelectedListener(i -> {
 
-                switch (i){
-                   case 0:
-                       navController.navigate(R.id.home3);
-                       return true;
-                   case 1:
-                       navController.navigate(R.id.wishlist);
-                       return true;
-                   case 2:
-                       navController.navigate(R.id.profile2);
-                       return true;
-               }
-                return  false;
-            }
+            switch (i){
+               case 0:
+                   navController.navigate(R.id.home3);
+                   return true;
+               case 1:
+                   navController.navigate(R.id.wishlist);
+                   return true;
+               case 2:
+                   navController.navigate(R.id.profile2);
+                   return true;
+           }
+            return  false;
         });
 
     }

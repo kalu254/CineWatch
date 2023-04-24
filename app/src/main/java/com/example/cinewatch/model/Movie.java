@@ -8,6 +8,7 @@ import java.util.ArrayList;
  * Created by Abhinav Singh on 09,June,2020
  */
 public class Movie {
+
     private String poster_path,overview,release_date,title,backdrop_path;
     private Integer id,vote_count,runtime;
     private Number popularity,vote_average;

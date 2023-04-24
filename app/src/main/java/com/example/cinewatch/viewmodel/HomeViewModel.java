@@ -194,15 +194,12 @@ public class HomeViewModel extends ViewModel {
     public void getQueriedMovies(HashMap<String, String> map){
         disposables.add(repository.getMoviesBySearch(map)
                 .subscribeOn(Schedulers.io())
-                .map(new Function<JsonObject, ArrayList<Movie>>() {
-                         @Override
-                         public ArrayList<Movie> apply(JsonObject jsonObject) throws Throwable {
-                             JsonArray jsonArray = jsonObject.getAsJsonArray("results");
-                             ArrayList<Movie> movieList = new Gson().fromJson(jsonArray.toString(),
-                                     new TypeToken<ArrayList<Movie>>(){}.getType());
-                             return movieList;
-                         }
-                     }
+                .map(jsonObject -> {
+                    JsonArray jsonArray = jsonObject.getAsJsonArray("results");
+                    ArrayList<Movie> movieList = new Gson().fromJson(jsonArray.toString(),
+                            new TypeToken<ArrayList<Movie>>(){}.getType());
+                    return movieList;
+                }
                 )
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(result->queriesMovies.setValue(result),

@@ -6,13 +6,14 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <RelativeLayout
             android:background="#323333"
             android:layout_width="match_parent" android:layout_height="match_parent">
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/searchLayout">
+                android:id="@+id/searchLayout"
+                >
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -50,34 +51,39 @@
                     android:id="@+id/filterSearch"
                     android:src="@drawable/ic_tune_black_24dp"/>
             </RelativeLayout>
+
             <TextView
+                android:id="@+id/currentlyShowing"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/searchLayout"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="Currently Showing"
                 android:textColor="#fff"
                 android:textSize="22dp"
-                android:textStyle="bold"
-                android:text="Currently Showing"
-                android:layout_below="@id/searchLayout"
-                android:layout_margin="10dp"
-                android:id="@+id/currentlyShowing"/>
+                android:textStyle="bold" />
+
             <TextView
+                android:id="@+id/viewAllCurrent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="View All"
-                android:textColor="#fff"
-                android:id="@+id/viewAllCurrent"
+                android:layout_below="@+id/searchLayout"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="15dp"
-                android:layout_below="@+id/searchLayout"
-                />
+                android:text="View All"
+                android:textColor="#fff" />
+
             <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/currentlyShowingViewPager"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_below="@+id/currentlyShowing"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:id="@+id/currentlyShowingViewPager"/>
+                android:layout_marginRight="20dp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -99,12 +105,16 @@
                 android:layout_marginRight="15dp"
                 android:layout_below="@+id/currentlyShowingViewPager"
                 />
+
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/upcomingRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/upcomingShowing"
-                android:layout_margin="5dp"
-                android:id="@+id/upcomingRecyclerView"/>
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

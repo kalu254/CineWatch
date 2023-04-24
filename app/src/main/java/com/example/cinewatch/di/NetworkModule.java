@@ -11,6 +11,8 @@ import dagger.hilt.InstallIn;
 import dagger.hilt.android.components.ActivityComponent;
 import dagger.hilt.android.components.ApplicationComponent;
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory;
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -22,14 +24,32 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @InstallIn(ApplicationComponent.class)
 public class NetworkModule {
 
+    
     @Provides
     @Singleton
-    public static MovieApiService provideMovieApiService(){
+    public static HttpLoggingInterceptor providesHttpLoggingInterceptor() {
+        return  new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
+    }
+
+    @Provides
+    @Singleton
+    public static OkHttpClient okHttpClient (HttpLoggingInterceptor httpLoggingInterceptor) {
+        return new OkHttpClient.Builder()
+                .addInterceptor(httpLoggingInterceptor)
+                .build();
+    }
+    @Provides
+    @Singleton
+    public static MovieApiService provideMovieApiService(OkHttpClient okHttpClient){
         return  new Retrofit.Builder()
                 .baseUrl(Constants.BaseURL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+                .client(okHttpClient)
                 .build()
                 .create(MovieApiService.class);
     }
+
+
+
 }
